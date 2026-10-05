@@ -4200,7 +4200,9 @@ blob_fixups: blob_fixups_user_type = {
     # libcameraservice uses, or Soong sees both V3 and V4.
     'system_ext/lib64/libcsextimpl.so': blob_fixup()
         .replace_needed('android.hardware.camera.provider-V3-ndk.so', 'android.hardware.camera.provider-V4-ndk.so')
-        .replace_needed('android.hardware.camera.device-V3-ndk.so', 'android.hardware.camera.device-V4-ndk.so'),
+        .replace_needed('android.hardware.camera.device-V3-ndk.so', 'android.hardware.camera.device-V4-ndk.so')
+        # Android 17 libbase bundles fmt v12; this blob imports fmt v11 symbols.
+        .replace_needed('libbase.so', 'libbase-stock.so'),
     'system_ext/framework/com.oplus.camera.unit.sdk.jar': blob_fixup()
         .apktool_unpack('patches-sdk')
         .patch_dir('patches-sdk')
