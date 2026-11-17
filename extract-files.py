@@ -4157,6 +4157,10 @@ lib_fixups: lib_fixups_user_type = {
 }
 
 blob_fixups: blob_fixups_user_type = {
+    # Match the charger interface version the device trees use for the
+    # other camera.oemlayer libraries, or Soong sees both V8 and V9.
+    'odm/lib64/hw/camera.oemlayer.v2.so': blob_fixup()
+        .replace_needed('vendor.oplus.hardware.charger-V8-ndk.so', 'vendor.oplus.hardware.charger-V9-ndk.so'),
     'system_ext/lib64/libAPSClient-cmd-jni.so': blob_fixup()
         .call(blob_fixup_apsclient_force_java_heif),
     'system_ext/framework/com.oplus.camera.unit.sdk.jar': blob_fixup()
