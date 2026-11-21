@@ -4163,6 +4163,11 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('vendor.oplus.hardware.charger-V8-ndk.so', 'vendor.oplus.hardware.charger-V9-ndk.so'),
     'system_ext/lib64/libAPSClient-cmd-jni.so': blob_fixup()
         .call(blob_fixup_apsclient_force_java_heif),
+    # Match the camera provider and device interface versions that
+    # libcameraservice uses, or Soong sees both V3 and V4.
+    'system_ext/lib64/libcsextimpl.so': blob_fixup()
+        .replace_needed('android.hardware.camera.provider-V3-ndk.so', 'android.hardware.camera.provider-V4-ndk.so')
+        .replace_needed('android.hardware.camera.device-V3-ndk.so', 'android.hardware.camera.device-V4-ndk.so'),
     'system_ext/framework/com.oplus.camera.unit.sdk.jar': blob_fixup()
         .apktool_unpack('patches-sdk')
         .patch_dir('patches-sdk')
