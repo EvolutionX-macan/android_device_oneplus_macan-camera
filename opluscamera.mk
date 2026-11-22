@@ -90,6 +90,9 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.build.version.oplus.sub_api=47 \
     ro.vendor.oplus.vendorxml.enable=1
 
+# Camera
+$(call soong_config_set,libgui,num_buffer_slots,96)
+
 # Photo
 $(call soong_config_set,camera,package_name,com.oplus.packageName)
 
